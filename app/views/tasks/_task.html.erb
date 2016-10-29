@@ -1,4 +1,28 @@
-<p><%= task.content %></p>
-<div class="btn-group">
-	<%= link_to "Delete", project_task_path(@project, task.id), method: :delete, data: {confirm: "Are Yousure?"} %>
+<div class="col-md-10 col-md-offset-1">
+	<% if task.completed? %>
+		<div class="row">
+			<div class="col-md-2">
+				<%= link_to "Task completed", complete_project_task_path(@project, task.id), method: :patch %>
+			</div>
+			<div class="col-md-8">
+				<p style="opacity: 0.4"><strike><%= task.content %></strike></p>
+			</div>
+			<div class="col-md-2">
+				<%= link_to "Delete", project_task_path(@project, task.id), method: :delete, data: {confirm: "Are Yousure?"} %>
+			</div>
+		</div>
+	<% else %>
+		<div class="row">
+			<div class="col-md-2">
+				<%= link_to "Task completed", complete_project_task_path(@project, task.id), method: :patch %>
+			</div>
+			<div class="col-md-2">
+				<%= link_to "Delete", project_task_path(@project, task.id), method: :delete, data: {confirm: "Are Yousure?"} %>
+			</div>
+			<div class="col-md-8">
+				<p><%= task.content %></p>
+			</div>
+		</div>
+			
+	<% end %>
 </div>
